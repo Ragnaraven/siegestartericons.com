@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		
+		<link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto|Roboto+Mono|Montserrat" rel="stylesheet">
+		
+	    <link rel="stylesheet" type="text/css" href="css/maker.css?v=5.0"/>
+	    
+		<script type="text/javascript" src="js/jquery-3.3.1.js?v=5.0"></script>
+		
+	    <script type="text/javascript" src="js/drawable.js?v=5.0"></script>
+	    <script type="text/javascript" src="js/operator.js?v=5.0"></script>
+	    <script type="text/javascript" src="js/rank.js?v=5.0"></script>
+	    <script type="text/javascript" src="js/iconrender.js?v=5.0"></script>
+			
+    	<script type="text/javascript" src="js/iconmaker.js?v=5.0"></script>
+    	<script type="text/javascript" src="js/iconmakerFX.js?v=5.0"></script>
+    	
+    	<!--OUTSIDE-->
+	    <script type="text/javascript" src='external/farbtastic/farbtastic.js?v=5.0'></script>
+		<link rel='stylesheet'        href='external/farbtastic/farbtastic.css?v=5.0' />
+	    
+	    <title>W0keIcons</title>
+	    
+		<meta name="description" content="Icons for Tom Clancy's Rainbow Six: Siege"></meta>
+		<meta name="keywords" content="W0ke, WOke, icons, siege, rainbow, six, icon, maker"></meta>
+		<meta name="author" content="W0ke/SubliminallySublime/Andrew"></meta>
+	    
+		<link rel="icon" href="images/tab.png"></link>
+	</head>
+	<body>
+		<div id="canvasWrapper">
+			<canvas id="canvas"></canvas>
+		</div>
+    	<div id="header">
+				<h1 id="websiteName">W0keIcons.com</h1>
+			<div id="spawnerWrapper">
+				<div id="spawner">
+				</div>
+			</div>
+    	</div>
+	    <div id="main">
+    		<div id="navDivider">
+	    		
+	    		<!--<div class="navDividerOptionLeft">
+	    			<span class="navDivText">Reset</span>
+	    			<img src=""></img>
+				</div>-->
+				<div class="revealButton" id="randomizeButton">
+					<p class="revealButtonText" id="randomButtonText">Randomize</p>
+					<div class="revealButtonImageWrapper">
+						<img src="images/actions/cake.png" class="fab, revealButtonImage"></img>
+					</div>
+				</div>
+				
+				<img src="components/yinyang/yinyang.png" id="yingYangPng"/>
+				
+	    		<!-- <div class="navDividerOption">Paypal</div>
+	    		<div class="navDividerOptionText">Donate:</div> -->
+	    	</div>
+	    	
+	    	<div id="leftNav">
+		    		<div class="navOption active" id="step1">
+		    			<span id="title">Step 1:</span>
+		    			<p id="subtitle">Pick Upper Options</p>
+		    		</div>
+		    		<div class="navOption" id="step2">
+		    			<span id="title">Step 2:</span>
+		    			<p id="subtitle">Pick Lower Options</p>
+		    		</div>
+		    		<div class="navOption" id="step3">
+		    			<span id="title">Step 3:</span>
+		    			<p id="subtitle">Additional Customization</p>
+		    		</div>
+	    		</div>
+				
+			<div id="rightNav">
+					<div id="canvasLoadingWrapper">
+						<canvas id="iconCanvas"></canvas>
+						<div id="loadingIcon" class="loadingIcon"></div>
+					</div>
+					
+		    		<div id="downloadWrapper">
+						<div class="downloadButton" id="downloadIcon">
+							<div class="downloadButtonIcon">
+								<img class="downloadButtonIconImage" src="images/downloadicon.png"></img>
+							</div>
+							<div class="downloadButtonText">
+								<span>Download</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			<!--CENTER MAIN-->
+			<div id="content">
+				<div class="page yinPage" id="yin">
+					<div class="pageHeader yinPageHeader">
+						<a class="pageJumper" name="yinheader"></a>
+						<span id="title">Yin (Upper) Options</span>
+						<span id="subtitle"></span>
+					</div>
+					<div class="pageContent">
+  						<input id="yinContentSearch" class="contentSearch" type="text" placeholder="Search Operators, CTUs, Ranks, Others...">
+  						
+  						<div class="tabs">
+  							<div class="tab" id="yinTabAttackers">
+  								<img class="tabImg hidden" src="images/att.png"/>
+  								<span class="tabText">Attackers</span>
+  								<span class="tabCount">0</span>
+  							</div>
+  							<div class="tab" id="yinTabDefenders">
+  								<img class="tabImg hidden" src="images/def.png"/>
+  								<span class="tabText">Defenders</span>
+  								<span class="tabCount">0</span>
+  							</div>
+  							<div class="tab" id="yinTabRanks">
+  								<img class="tabImg hidden" src="components/ranks/diamond.png"/>
+  								<span class="tabText">Ranks</span>
+  								<span class="tabCount">0</span>
+  							</div>
+  							<div class="tab" id="yinTabOther">
+  								<img class="tabImg hidden" src="components/others/recruit.png"/>
+  								<span class="tabText">Other</span>
+  								<span class="tabCount">0</span>
+  							</div>
+  						</div>
+  						
+  						<div class="results" id="yinResultsBox">
+  							
+  						</div>
+  						
+  						<div class="customizationWrapper">
+	  						<div class="selectionWrapper styleWrapper">
+	  							<span class="styleHeader">Choose a Style</span>
+		  						<div class="selectionOptions styleSelections" id="yinStyleSelector">
+		  						</div>
+	  						</div>
+	  						
+	  						<div class="bgColorWrapper">
+		  						<span class="styleHeader">Choose a Background Color</span>
+		  						<div class="bgColorOptionsWrapper">		
+                                    
+			  						<div class="bgColorPickerWrapper">
+										<form action="">
+											<div class="form-item">
+												<label for="yinColor">Hex:</label>
+												<input type="text" class="whiteText" id="yinColor" name="yinColor" value="#d15f33" />
+											</div>
+											<div id="yinColorPicker"></div>
+										</form>
+									</div>
+                                    
+                                    <div class="colorButtonWrapper" id="yinColorButtonWrapper">
+										<div class="colorButton colorButtonReset" id="yinColorButtonReset">DOKKAEBI - GIS</div>
+										
+										<!--Predefined Color Buttons are here-- >
+										<div class="colorButton">FBI</div>
+										<div class="colorButton">GIGN</div>
+										<div class="colorButton">SAS</div>
+										<div class="colorButton">JTF2</div>
+										<div class="colorButton">GEO</div>
+										<div class="colorButton">GROM</div>
+										<div class="colorButton">SDU</div>
+										<div class="colorButton">BOPE</div>
+										<div class="colorButton">SAT</div>
+										<div class="colorButton">CBRN</div>
+										<div class="colorButton">SEALS</div>
+										<div class="colorButton">A707</div>
+										<div class="colorButton">GIS</div>
+										<div class="colorButton">GSUTR</div>
+										<div class="colorButton colorButtonSpetsnaz">SPETSNAZ</div>-->
+									
+									</div>
+								</div>
+							</div>
+							
+							<div class="bgColorWrapper recruitHatColorWrapper" id="yinRecruitHatColorWrapper">
+		  						<span class="styleHeader">Choose a Recruit Hat Color</span>
+		  						<div class="bgColorOptionsWrapper">
+			  						<div class="bgColorPickerWrapper">
+										<form action="">
+											<div class="form-item">
+												<label for="yinRecruitColor">Hex:</label>
+												<input type="text" class="whiteText" id="yinRecruitColor" name="yinRecruitColor" value="#d15f33" />
+											</div>
+											<div id="yinRecruitColorPicker"></div>
+										</form>
+									</div>
+									
+									<div class="colorButtonWrapper" id="yinRecruitColorButtonWrapper">
+										<div class="colorButton colorButtonReset" id="yinRecruitColorButtonReset">Recruit</div>
+										
+										<!--Predefined Color Buttons are here-- >
+										<div class="colorButton">FBI</div>
+										<div class="colorButton">GIGN</div>
+										<div class="colorButton">SAS</div>
+										<div class="colorButton">JTF2</div>
+										<div class="colorButton">GEO</div>
+										<div class="colorButton">GROM</div>
+										<div class="colorButton">SDU</div>
+										<div class="colorButton">BOPE</div>
+										<div class="colorButton">SAT</div>
+										<div class="colorButton">CBRN</div>
+										<div class="colorButton">SEALS</div>
+										<div class="colorButton">A707</div>
+										<div class="colorButton">GIS</div>
+										<div class="colorButton">GSUTR</div>
+										<div class="colorButton colorButtonSpetsnaz">SPETSNAZ</div>-->
+									
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="page yangPage" id="yang">
+					<div class="pageHeader yangPageHeader">
+						<a class="pageJumper" name="yangheader"></a>
+						<span id="title">Yang (Lower) Options</span>
+						<span id="subtitle"></span>
+					</div>
+					<div class="pageContent">
+  						<input id="yangContentSearch" class="contentSearch" type="text" placeholder="Search Operators, CTUs, Ranks, Others...">
+  						
+  						<div class="tabs">
+  							<div class="tab tabYang" id="yangTabAttackers">
+  								<img class="tabImg hidden" src="images/att.png"/>
+  								<span class="tabText">Attackers</span>
+  								<span class="tabCount">0</span>
+  							</div>
+  							<div class="tab tabYang" id="yangTabDefenders">
+  								<img class="tabImg hidden" src="images/def.png"/>
+  								<span class="tabText">Defenders</span>
+  								<span class="tabCount">0</span>
+  							</div>
+  							<div class="tab tabYang" id="yangTabRanks">
+  								<img class="tabImg hidden" src="components/ranks/diamond.png"/>
+  								<span class="tabText">Ranks</span>
+  								<span class="tabCount">0</span>
+  							</div>
+  							<div class="tab tabYang" id="yangTabOther">
+  								<img class="tabImg hidden" src="components/others/recruit.png"/>
+  								<span class="tabText">Other</span>
+  								<span class="tabCount">0</span>
+  							</div>
+  						</div>
+  						<div class="results resultsYang" id="yangResultsBox">
+  							
+  						</div>
+  						
+  						<div class="customizationWrapper">
+	  						<div class="selectionWrapper styleWrapper yangStyleHeader">
+	  							<span class="styleHeader">Choose a Style</span>
+		  						<div class="selectionOptions styleSelections" id="yangStyleSelector">
+		  							
+		  						</div>
+	  						</div>
+	  						
+	  						<div class="bgColorWrapper">
+		  						<span class="styleHeader yangStyleHeader">Choose a Background Color</span>
+		  						<div class="bgColorOptionsWrapper">
+			  						<div class="bgColorPickerWrapper">
+										<form action="">
+											<div class="form-item">
+												<label for="yangColor" class="whiteText">Hex:</label>
+												<input type="text" class="whiteText" id="yangColor" name="yangColor" value="#d15f33" />
+											</div>
+											<div id="yangColorPicker"></div>
+										</form>
+									</div>
+									
+									<div class="colorButtonWrapper" id="yangColorButtonWrapper">
+										<div class="colorButton yangColorButton colorButtonReset" id="yangColorButtonReset">DOKKAEBI - GIS</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="bgColorWrapper recruitHatColorWrapper" id="yangRecruitHatColorWrapper">
+		  						<span class="styleHeader yangStyleHeader">Choose a Recruit Hat Color</span>
+		  						<div class="bgColorOptionsWrapper">
+			  						<div class="bgColorPickerWrapper">
+										<form action="">
+											<div class="form-item">
+												<label for="yangRecruitColor">Hex:</label>
+												<input type="text" class="whiteText" id="yangRecruitColor" name="yangRecruitColor" value="#d15f33" />
+											</div>
+											<div id="yangRecruitColorPicker"></div>
+										</form>
+									</div>
+									
+									<div class="colorButtonWrapper" id="yangRecruitColorButtonWrapper">
+										<div class="colorButton colorButtonReset yangColorButtonReset" id="yangRecruitColorButtonReset">Recruit</div>
+										
+										<!--Predefined Color Buttons are here-- >
+										<div class="colorButton">FBI</div>
+										<div class="colorButton">GIGN</div>
+										<div class="colorButton">SAS</div>
+										<div class="colorButton">JTF2</div>
+										<div class="colorButton">GEO</div>
+										<div class="colorButton">GROM</div>
+										<div class="colorButton">SDU</div>
+										<div class="colorButton">BOPE</div>
+										<div class="colorButton">SAT</div>
+										<div class="colorButton">CBRN</div>
+										<div class="colorButton">SEALS</div>
+										<div class="colorButton">A707</div>
+										<div class="colorButton">GIS</div>
+										<div class="colorButton">GSUTR</div>
+										<div class="colorButton">GIGR</div>
+										<div class="colorButton colorButtonSpetsnaz">SPETSNAZ</div> -->
+									
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				
+				<div class="page customizePage" id="customize">
+					<div class="pageHeader customizePageHeader">
+						<a class="pageJumper" name="page3header"></a>
+						<span id="title">Step 3:</span>
+						<span id="subtitle">Additional Customization</span>
+					</div>
+					<div class="pageContent customizePageContent">
+						<div id="bgSwapWrapper">
+							<label class="switch" id="bgSwapButtonLabel">
+								<input type="checkbox" id="bgSwapButton">
+								<span class="slider round"></span>
+							</label>
+							<p id="bgSwapHeader">Swap Backgrounds</p>
+							<p id="bgSwapText">Enabling this will swap the upper and lower image backgrounds. Most of the time, this just swaps the colors of the backgrounds. However, if an operator has a special style, such as Dookkaebi's special White Noise background, this will be reflected. Further support for background style and frames is planned.</p>
+						</div>
+						<div id="newContentWrapper">
+							<!--<p>New content will be placed here.
+								I would like to add custom frames that I provide and the option to upload
+								your own frames and maybe (one day in the far future) other components.
+							</p>-->
+							
+							<p> Let me know if you have any ideas by finding me on Reddit <a href="https://www.reddit.com/user/W0kedot">'W0kedot'</a> or on the Ubisoft Siege Forum 'W0ke.'</p>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+			
+    	<div id="changelog">
+			<h4>Changelog</h4>
+			<span>4/9/2018</span>
+			<ul>
+				<li>Added recruit option under the Other category. </li>
+				<li>Improved rendering options.</li>
+				<li>Added Recruit as a color option.</li>
+			</ul>
+			<span>4/10/2018</span>
+			<ul>
+				<li>Added ranks category. Style one has white numerals, style 2 has transparent numerals. Other styles are likely jokes. See Diamond and Copper V options.</li>
+				<li>Totally rewrote renderer.</li>
+				<li>Allows swapping of entire backgrounds if the operator supports it (at the moment, only White Noise Ops).</li>
+				<li>Fixed a glitch that would draw multiple icons if you clicked on tabs quickly.</li>
+			</ul>
+			<span>4/11/2018</span>
+			<ul>
+				<li>Fixed bug with hostage background color.</li>
+				<li>Fixed overlap glitch by rendering in quadrants.</li>
+			</ul>
+			<span>4/12/2018</span>
+			<ul>
+				<li>Updated coloring.</li>
+			</ul>
+			<span>4/16/2018</span>
+			<ul>
+				<li>Added background color option for all operators.</li>
+			
+			</ul>
+			<span>6/17/2018</span>
+			<ul>
+				<li>Brought site back online and switched hosts.</li>
+				<li>Added Alibi and Maestro.</li>
+			</ul>
+			<span>8/27/2018</span>
+			<ul>
+				<li>Added Maverick and Clash.</li>	
+			</ul>
+			<span>10/22/2018</span>
+			<ul>
+				<li>Overhauled the entire site. Welcome to version 2.0!</li>
+			</ul>
+			<span>2/18/2019</span>
+			<ul>
+				<li>Added Nomad and Kaid.</li>
+				<li>Added Paper Towel Ranks.</li>
+			</ul>
+			<span>3/7/2019</span>
+			<ul>
+				<li>Added Gridlock and Mozzie.</li>
+			</ul>
+			<span>10/14/2019</span>
+			<ul>
+				<li>Added Nokk, Warden, Goyo and Amaru. Sorry about the wait, the fan packs were not on schedule and were released differently from before.</li>
+			</ul>
+			
+			<div class="specialThanks">Special Thanks</div> 
+			<ul>
+				<li>Thanks to the creator of Farbtastic for the color pickers: <a href="http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/">http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/</a></li>
+				<li>Thanks to Timo Hausmann, creator of the confetti button effect: <a href="https://codepen.io/timohausmann/pen/icCer">	https://codepen.io/timohausmann/pen/icCer</a> </li>
+			</ul>
+			
+    	</div>
+    	
+	    <!-- This div holds the elements that are dynamically generated.
+	    As it turns out this is VITALLY necessary because if a class or id 
+	    has not been used by the time onLoad or .ready has been called, that 
+	    class or id WILL NOT WORK WITH JQUERY selectors.
+	    
+	    It also holds hidden elements.-->
+	    <div id="hidden" style="display: none">
+	    	
+			<div class='searchResultOperator'> 
+				<div class='searchResultOperatorHeader'></div> 
+				<div class='searchResultOperatorImgWrapper'>
+					<img class='searchResultOperatorImg' ></img> 
+				</div> 
+			</div>
+			
+			<canvas id="devCanvas"></canvas>
+			
+			<!--used for random imagedrawing-->
+			<canvas id="dummyCanvas"></canvas>
+			<canvas id="dummyDevCanvas"></canvas>
+			
+			<a id="imageDownloadLink"></a>
+	    </div>
+	</body>
+</html>
