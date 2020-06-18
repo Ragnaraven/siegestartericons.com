@@ -10,7 +10,7 @@
 	
 	FROM - ICONRENDER.JS
 	setupCanvas
-	renderW0keIcon
+	renderSiegeStarterIcon
 	renderArgs
 	
 	GET_COLOR_BY_INDEX
@@ -37,7 +37,7 @@ var iconCanvas,
     
     loadingIcon,
     
-    w0keiconDrawArgs;
+    SiegeStarterIconDrawArgs;
 
 var dummyIconCanvas,
     dummyIconContext,
@@ -140,7 +140,7 @@ $(document).ready(function()
     bgSwapButton = document.getElementById("bgSwapButton");
     bgSwapButton.addEventListener("input", function() {
         bgSwap = !bgSwap;
-        drawW0keIcon(); //Maybe add page param event listener.
+        drawSiegeStarterIcon(); //Maybe add page param event listener.
     });
     
     checkScrollSwitching();
@@ -151,8 +151,8 @@ $(document).ready(function()
 	
     dummyDrawArgs = new DrawArgs();
     
-    w0keiconDrawArgs = new DrawArgs();
-	drawW0keIcon();
+    SiegeStarterIconDrawArgs = new DrawArgs();
+	drawSiegeStarterIcon();
     
     spawner = $("#spawner");
     setupFeed();
@@ -1036,14 +1036,14 @@ function onPageParamsChanged (mode, argMode, arg)
     else 
         alert("FRAME UDPATE");
         
-    drawW0keIcon();
+    drawSiegeStarterIcon();
 }
 
-function drawW0keIcon ()
+function drawSiegeStarterIcon ()
 {
     if(doneInit)
     {
-        w0keiconDrawArgs.init(
+        SiegeStarterIconDrawArgs.init(
             iconCanvas,
             iconContext,
             devCanvas,
@@ -1054,7 +1054,7 @@ function drawW0keIcon ()
             YIN_YANG_PAGES[YANG].pageParams.getDrawable(),
             null);
             
-        renderW0keIcon(w0keiconDrawArgs);
+        renderSiegeStarterIcon(SiegeStarterIconDrawArgs);
     }
 }
 ///////////////////////////////////////////////////////////
@@ -1216,21 +1216,21 @@ function downloadIcon ()
 			url: 'php/stat.php',
 			type: 'post',
 			data: ({
-				upperDrawableBackground:w0keiconDrawArgs.renderArgs[0],       //0
-				upperDrawableBGColor:w0keiconDrawArgs.renderArgs[1],          //1
-				upperDrawableIcon:w0keiconDrawArgs.renderArgs[2],             //2
-				upperDrawableExtraColor:w0keiconDrawArgs.renderArgs[3],      //3
-				upperDrawableBorder:w0keiconDrawArgs.renderArgs[4],           //4
-				upperDrawableFrame:w0keiconDrawArgs.renderArgs[5],           //5
+				upperDrawableBackground:SiegeStarterIconDrawArgs.renderArgs[0],       //0
+				upperDrawableBGColor:SiegeStarterIconDrawArgs.renderArgs[1],          //1
+				upperDrawableIcon:SiegeStarterIconDrawArgs.renderArgs[2],             //2
+				upperDrawableExtraColor:SiegeStarterIconDrawArgs.renderArgs[3],      //3
+				upperDrawableBorder:SiegeStarterIconDrawArgs.renderArgs[4],           //4
+				upperDrawableFrame:SiegeStarterIconDrawArgs.renderArgs[5],           //5
 				
-				lowerDrawableBackground:w0keiconDrawArgs.renderArgs[6],       //6
-				lowerDrawableBGColor:w0keiconDrawArgs.renderArgs[7],          //7
-				lowerDrawableIcon:w0keiconDrawArgs.renderArgs[8],           //8
-				lowerDrawableExtraColor:w0keiconDrawArgs.renderArgs[9],       //9
-				lowerDrawableBorder:w0keiconDrawArgs.renderArgs[10],           //10
-				lowerDrawableFrame:w0keiconDrawArgs.renderArgs[11],           //11
+				lowerDrawableBackground:SiegeStarterIconDrawArgs.renderArgs[6],       //6
+				lowerDrawableBGColor:SiegeStarterIconDrawArgs.renderArgs[7],          //7
+				lowerDrawableIcon:SiegeStarterIconDrawArgs.renderArgs[8],           //8
+				lowerDrawableExtraColor:SiegeStarterIconDrawArgs.renderArgs[9],       //9
+				lowerDrawableBorder:SiegeStarterIconDrawArgs.renderArgs[10],           //10
+				lowerDrawableFrame:SiegeStarterIconDrawArgs.renderArgs[11],           //11
 				
-				bgSwap:w0keiconDrawArgs.renderArgs[12]                     //12
+				bgSwap:SiegeStarterIconDrawArgs.renderArgs[12]                     //12
 			})
 		});
 	}
@@ -1240,7 +1240,7 @@ function downloadIcon ()
 	}
 	
 	var link = document.getElementById("imageDownloadLink");
-	link.setAttribute("download", "W0keIcon." + w0keiconDrawArgs.renderArgs[13] + w0keiconDrawArgs.renderArgs[14] + ".png");
+	link.setAttribute("download", "siegeStarterIcon." + SiegeStarterIconDrawArgs.renderArgs[13] + SiegeStarterIconDrawArgs.renderArgs[14] + ".png");
 	link.setAttribute("href", iconCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
 	link.click();
 }
@@ -1323,7 +1323,7 @@ function getRandomIcon (iconOptions, callback)
         lowerDrawable
         );
         
-    renderW0keIcon(dummyDrawArgs, callback);
+    renderSiegeStarterIcon(dummyDrawArgs, callback);
 }
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////

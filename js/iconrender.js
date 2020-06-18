@@ -11,7 +11,7 @@
     YANG
 */
 
-function renderW0keIcon (drawArgs, callback = null)
+function renderSiegeStarterIcon (drawArgs, callback = null)
 {
 	if(doneInit) //From iconmaker.js
 	{
