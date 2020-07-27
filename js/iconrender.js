@@ -147,7 +147,7 @@ function drawBackgrounds (drawArgs, time, callback)
 function drawIcons (drawArgs, time, callback)
 {
 	        
-    console.log(drawArgs.upperDrawable)
+    //console.log(drawArgs.upperDrawable)
 	        
 	drawArgs.iconsLoaded = 0;
 	drawArgs.upperDrawable.getIcon(function (result, path)

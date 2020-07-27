@@ -182,7 +182,7 @@ class Operator
 		}
 		else
 		{
-			console.log(this.styles)
+			//console.log(this.styles)
 			
 			return new Drawable(
 				name,
